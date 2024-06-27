@@ -2,6 +2,8 @@ import React from 'react';
 import { TouchableOpacity, TouchableOpacityProps, Text, Pressable } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, withTiming, Easing, interpolateColor } from 'react-native-reanimated';
 
+const PressableAnimated = Animated.createAnimatedComponent(Pressable)
+
 import { THEME } from '../../styles/theme';
 import { styles } from './styles';
 
@@ -29,6 +31,7 @@ export function Level({ title, type = 'EASY', isChecked = false, ...rest }: Prop
       transform: [{ scale: scale.value }],
       backgroundColor: interpolateColor(checked.value, [0, 1], ["transparent", COLOR]),
     }
+    
   })
 
   const animatedTextStyle = useAnimatedStyle(() => {
@@ -51,22 +54,19 @@ export function Level({ title, type = 'EASY', isChecked = false, ...rest }: Prop
   },[isChecked])
 
   return (
-    <Pressable onPressIn={onPressIn} onPressOut={onPressOut} {...rest}>
-      <Animated.View style={
-        [
-          styles.container,
-          { borderColor: COLOR },
-          animatedContainerStyle,
-        ]
-      }>
-        <Animated.Text style={
-          [
-            styles.title,
-            animatedTextStyle
-          ]}>
+    <PressableAnimated 
+    onPressIn={onPressIn} 
+    onPressOut={onPressOut} 
+    style={
+      [
+        styles.container,
+        { borderColor: COLOR },
+        animatedContainerStyle,
+      ]
+    } {...rest}>
+        <Animated.Text style={[ styles.title, animatedTextStyle ]}>
           {title}
         </Animated.Text>
-      </Animated.View>
-    </Pressable>
+    </PressableAnimated>
   );
 }
