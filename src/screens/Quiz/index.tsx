@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Alert, ScrollView, View } from 'react-native';
+import { Alert, ScrollView, TouchableOpacity, View } from 'react-native';
 import Animated, { Easing, interpolate, useAnimatedStyle, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -97,7 +97,7 @@ export function Quiz() {
 
   function shakeAnimation() {
     shake.value = withSequence(withTiming(3, { duration: 400, easing: Easing.bounce
-      
+
      }), withTiming(0))
   }
 
