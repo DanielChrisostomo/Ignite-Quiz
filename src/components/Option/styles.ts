@@ -23,5 +23,5 @@ export const styles = StyleSheet.create({
   checked: {
     borderWidth: 1,
     borderColor: THEME.COLORS.BRAND_LIGHT
-  }
+  } 
 });
